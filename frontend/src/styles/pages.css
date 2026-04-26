@@ -1,0 +1,601 @@
+/* Dashboard Page */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.dashboard-timeline {
+  margin-bottom: 24px;
+}
+
+/* Agents Page */
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* Agent Detail Page */
+.agent-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.agent-detail-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.agent-detail-info h1 {
+  font-size: 1.5rem;
+  margin: 0 0 4px;
+}
+
+.agent-detail-role {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.agent-detail-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Tasks Page */
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Messages Page */
+.messages-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  height: calc(100vh - 180px);
+  overflow: hidden;
+}
+
+.messages-sidebar {
+  border-left: 1px solid var(--border-color);
+  overflow-y: auto;
+}
+
+.messages-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.messages-contact:hover,
+.messages-contact-active {
+  background: #f0f4ff;
+}
+
+.messages-contact-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.messages-contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.messages-contact-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.messages-contact-preview {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messages-unread {
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.messages-thread {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.messages-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* OrgChart Page */
+.orgchart-container {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 40px 20px;
+  overflow-x: auto;
+}
+
+.org-level {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.org-level::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  width: 2px;
+  height: 16px;
+  background: var(--border-color);
+}
+
+.org-level:first-child::before {
+  display: none;
+}
+
+.org-node {
+  min-width: 180px;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.org-node:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.org-node-chair {
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  border-color: #a18cd1;
+  color: white;
+}
+
+.org-node-ceo {
+  background: linear-gradient(135deg, #2dd4bf, #22c55e);
+  border-color: #2dd4bf;
+  color: white;
+}
+
+.org-node-hr {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  border-color: #f093fb;
+  color: white;
+}
+
+.org-node-agent {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  border-color: #c3cfe2;
+}
+
+.org-node-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.org-node-role {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.org-connector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.org-connector-line {
+  width: 2px;
+  height: 24px;
+  background: var(--border-color);
+}
+
+/* Approvals Page */
+.approvals-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Interview Page */
+.interview-hero {
+  background: linear-gradient(135deg, #2dd4bf 0%, #22c55e 100%);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  margin-bottom: 24px;
+}
+
+.interview-hero h1 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.interview-hero p {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.interview-section {
+  margin-bottom: 32px;
+}
+
+.interview-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.interview-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.interview-question {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  gap: 14px;
+  align-items: start;
+}
+
+.question-number {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.question-content {
+  flex: 1;
+}
+
+.question-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.question-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Candidates */
+.candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.candidate-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-card-selected {
+  border-color: var(--success-color);
+  box-shadow: 0 0 0 2px rgba(72, 187, 120, 0.2);
+}
+
+.candidate-header {
+  padding: 20px;
+  color: white;
+}
+
+.candidate-a .candidate-header { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.candidate-b .candidate-header { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.candidate-c .candidate-header { background: linear-gradient(135deg, #2dd4bf, #22c55e); }
+
+.candidate-nickname {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.candidate-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.candidate-body {
+  padding: 20px;
+}
+
+.candidate-background {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.candidate-list {
+  margin-bottom: 12px;
+}
+
+.candidate-list h4 {
+  font-size: 0.8rem;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.candidate-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.candidate-list li {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  padding: 2px 0;
+}
+
+.candidate-list li::before {
+  content: '•';
+  color: var(--primary-color);
+  margin-left: 6px;
+}
+
+/* Scores Table */
+.scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.scores-table th,
+.scores-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.scores-table th {
+  background: #f8fafc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.scores-table th:first-child,
+.scores-table td:first-child {
+  text-align: right;
+  font-weight: 500;
+}
+
+.scores-table td {
+  font-size: 0.9rem;
+}
+
+.score-highlight {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.score-winner {
+  background: #f0fdf4;
+}
+
+/* Selection Report */
+.selection-report {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  line-height: 1.7;
+}
+
+.selection-report h2 {
+  border-bottom: none;
+  margin-bottom: 12px;
+}
+
+.selection-report h3 {
+  font-size: 1rem;
+  margin: 20px 0 8px;
+}
+
+.winner-banner {
+  background: linear-gradient(135deg, #2dd4bf 0%, #22c55e 100%);
+  color: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.winner-badge {
+  font-size: 2.5rem;
+}
+
+.winner-info h3 {
+  font-size: 1.2rem;
+  margin: 0 0 4px;
+  color: white;
+}
+
+.winner-info p {
+  opacity: 0.9;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Transcript */
+.transcript-section {
+  margin-bottom: 24px;
+}
+
+.transcript-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  border: 1px solid var(--border-color);
+}
+
+.transcript-header:hover {
+  background: #f0f4ff;
+}
+
+.transcript-toggle {
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+}
+
+.transcript-toggle:hover {
+  background: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.transcript-body {
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+
+.transcript-qa {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.transcript-qa:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.transcript-question {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.transcript-answer {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .messages-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .candidates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agents-grid {
+    grid-template-columns: 1fr;
+  }
+}

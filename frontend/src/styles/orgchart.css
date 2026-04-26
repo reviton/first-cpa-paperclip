@@ -1,0 +1,144 @@
+.org-chart-container {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.org-chart-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2dd4bf;
+  font-size: 1.8rem;
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.org-level {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.org-level.level-1,
+.org-level.level-2,
+.org-level.level-3 {
+  padding: 1.5rem;
+}
+
+.org-position {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.role-title {
+  font-weight: 600;
+  color: #2dd4bf;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.org-box {
+  border: 2px solid #2dd4bf;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.org-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(102, 126, 234, 0.3);
+  border-color: #22c55e;
+}
+
+.org-box.agent-box {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border-color: #0284c7;
+}
+
+.org-box.agent-box .agent-name {
+  font-weight: 600;
+  color: #0c4a6e;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.org-box.agent-box .agent-role {
+  color: #0c4a6e;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.org-box.empty-box {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: #16a34a;
+  color: #166534;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.position-label {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Connector lines (optional visual enhancement) */
+.org-level::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 2px;
+  height: 2rem;
+  background-color: #cbd5e0;
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .org-chart-container {
+    padding: 1rem;
+  }
+
+  .org-level {
+    gap: 1rem;
+  }
+
+  .org-box {
+    min-width: 160px;
+    padding: 1rem;
+  }
+
+  .role-title {
+    font-size: 0.85rem;
+  }
+
+  .position-label {
+    font-size: 0.9rem;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .app-header p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "first-cpa-organization",
+  "version": "0.1.0",
+  "description": "Multi-agent system for CPA organization management",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "agents/agent-ceo",
+    "agents/agent-hr",
+    "agents/shared"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "start:frontend": "cd frontend && npm start",
+    "start:backend": "cd backend && npm start",
+    "test": "npm test --workspaces"
+  }
+}

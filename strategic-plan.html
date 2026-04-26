@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תוכנית אסטרטגית - פירסט חשבונאות ופיננסים</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 25mm 15mm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, 'Segoe UI', Tahoma, sans-serif;
+            direction: rtl;
+            color: #0f172a;
+            background: #fff;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        /* Cover Page */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0a1628 0%, #0f172a 40%, #1e293b 70%, #1e6091 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.03) 0%, transparent 50%);
+        }
+
+        .cover-logo {
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cover h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .cover h2 {
+            font-size: 22px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 8px;
+        }
+
+        .cover-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #2dd4bf, #70c4e8);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        .cover-meta {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 10px;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 24px;
+            border-radius: 30px;
+            margin-top: 40px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            padding: 18px 30px;
+            border-radius: 8px;
+            margin: 40px 0 25px 0;
+            font-size: 22px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 30px;
+            width: 60px;
+            height: 3px;
+            background: #2dd4bf;
+            border-radius: 2px;
+        }
+
+        .sub-header {
+            color: #0f172a;
+            font-size: 19px;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e8eef5;
+        }
+
+        .sub-sub-header {
+            color: #1e293b;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 15px 0;
+            border-right: 4px solid #0f172a;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card ul li {
+            padding: 5px 0;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .info-card ul li::before {
+            content: '\25CF';
+            color: #2dd4bf;
+            position: absolute;
+            right: 0;
+            font-size: 10px;
+            top: 8px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13.5px;
+        }
+
+        table thead th {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            padding: 12px 15px;
+            text-align: right;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        table thead th:first-child {
+            border-radius: 0 8px 0 0;
+        }
+
+        table thead th:last-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        table tbody td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e8eef5;
+            vertical-align: top;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        table tbody tr:hover {
+            background: #eef4fb;
+        }
+
+        /* Agent Cards */
+        .agent-card {
+            background: #fff;
+            border: 1px solid #dde5ef;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(22,50,91,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #2dd4bf, #0f172a);
+        }
+
+        .agent-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .agent-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .agent-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .agent-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .agent-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tag-type {
+            background: #e8f4fd;
+            color: #1e293b;
+        }
+
+        .tag-cost {
+            background: #e8f8e8;
+            color: #1a6b1a;
+        }
+
+        .tag-target {
+            background: #fff3e0;
+            color: #b36b00;
+        }
+
+        .agent-section-label {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 14px;
+            margin: 12px 0 6px 0;
+        }
+
+        .agent-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .agent-card ul li {
+            padding: 4px 0;
+            padding-right: 18px;
+            position: relative;
+        }
+
+        .agent-card ul li::before {
+            content: '\25B8';
+            color: #2dd4bf;
+            position: absolute;
+            right: 0;
+            top: 4px;
+        }
+
+        .agent-card ol {
+            padding-right: 20px;
+        }
+
+        .agent-card ol li {
+            padding: 3px 0;
+        }
+
+        .process-step {
+            padding: 4px 0 4px 0;
+            position: relative;
+            padding-right: 18px;
+        }
+
+        .process-step::before {
+            content: '\2713';
+            color: #2ecc71;
+            position: absolute;
+            right: 0;
+            font-weight: 700;
+        }
+
+        /* KPI Metrics */
+        .metrics-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .metric-badge {
+            flex: 1;
+            min-width: 150px;
+            background: #f0f6fc;
+            border: 1px solid #d0dff0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .metric-badge .label {
+            font-size: 11px;
+            color: #5a6d85;
+            margin-bottom: 4px;
+        }
+
+        .metric-badge .value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Phase Headers */
+        .phase-header {
+            background: linear-gradient(135deg, #0f172a 0%, #0f172a 50%, #1e293b 100%);
+            color: #fff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin: 45px 0 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 50%, rgba(77,168,218,0.15) 0%, transparent 60%);
+        }
+
+        .phase-label {
+            font-size: 13px;
+            color: #2dd4bf;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .phase-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .phase-subtitle {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 5px;
+        }
+
+        /* Summary Table Highlight */
+        .summary-table-wrapper {
+            background: linear-gradient(135deg, #f0f6fc, #e8f0fa);
+            border: 2px solid #0f172a;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-table-wrapper table thead th {
+            background: linear-gradient(135deg, #0f172a, #0f172a);
+        }
+
+        .summary-table-wrapper table {
+            font-size: 13px;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .highlight-box .big-number {
+            font-size: 38px;
+            font-weight: 700;
+            color: #2dd4bf;
+        }
+
+        .highlight-box .big-label {
+            font-size: 16px;
+            margin-top: 5px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            min-width: 140px;
+        }
+
+        /* Principles */
+        .principle-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e8eef5;
+        }
+
+        .principle-card:last-child {
+            border-bottom: none;
+        }
+
+        .principle-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #0f172a;
+            color: #fff;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .principle-text strong {
+            color: #0f172a;
+        }
+
+        /* Signature */
+        .signature-block {
+            margin-top: 50px;
+            padding: 30px;
+            border-top: 2px solid #0f172a;
+            text-align: center;
+        }
+
+        .signature-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .signature-role {
+            font-size: 15px;
+            color: #5a6d85;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a9bb5;
+            font-size: 11px;
+            border-top: 1px solid #e8eef5;
+            margin-top: 40px;
+        }
+
+        /* Pain Points */
+        .pain-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pain-list li {
+            padding: 8px 0 8px 0;
+            padding-right: 30px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pain-list li::before {
+            content: '\26A0';
+            position: absolute;
+            right: 0;
+            top: 8px;
+            font-size: 16px;
+        }
+
+        /* KPI List */
+        .kpi-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .kpi-list li {
+            padding: 6px 0;
+            padding-right: 25px;
+            position: relative;
+        }
+
+        .kpi-list li::before {
+            content: '\2714';
+            color: #0f172a;
+            position: absolute;
+            right: 0;
+            font-weight: 700;
+        }
+
+        /* Before/After comparison */
+        .comparison-table tbody td:nth-child(2) {
+            color: #c0392b;
+            font-weight: 600;
+        }
+
+        .comparison-table tbody td:nth-child(3) {
+            color: #27ae60;
+            font-weight: 700;
+        }
+
+        /* ROI Box */
+        .roi-box {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .roi-item {
+            background: #f8fafc;
+            border: 1px solid #dde5ef;
+            border-radius: 10px;
+            padding: 20px 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .roi-item .roi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .roi-item .roi-label {
+            font-size: 13px;
+            color: #5a6d85;
+            margin-top: 5px;
+        }
+
+        .roi-item.highlight {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border: none;
+        }
+
+        .roi-item.highlight .roi-value {
+            color: #2dd4bf;
+        }
+
+        .roi-item.highlight .roi-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            .cover {
+                min-height: auto;
+                padding: 80px 40px;
+            }
+            .agent-card {
+                break-inside: avoid;
+            }
+            .phase-header {
+                break-after: avoid;
+            }
+            .page-footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+    <img src="https://www.first-cpa.co.il/favicon.ico" alt="First CPA" style="width: 80px; height: 80px; margin-bottom: 20px; border-radius: 12px;" />
+    <div class="cover-logo">FIRST CPA &amp; FINANCE</div>
+    <h1>תוכנית אסטרטגית</h1>
+    <h2>פירסט חשבונאות ופיננסים בע"מ</h2>
+    <div class="cover-divider"></div>
+    <h2>מגישה: נועה לוי-אלגוריתם</h2>
+    <div class="cover-meta">מנכ"לית החברה הוירטואלית</div>
+    <div class="cover-badge">אפריל 2026 | חסוי</div>
+</div>
+
+<div class="content">
+
+    <!-- SECTION: OVERVIEW -->
+    <div class="page-break"></div>
+    <div class="section-header">סקירת המשרד</div>
+
+    <div class="info-card">
+        <ul>
+            <li><strong>שם החברה:</strong> פירסט חשבונאות ופיננסים בע"מ (ת.ש.פ.ר בע"מ)</li>
+            <li><strong>כתובת:</strong> שד' פלי"ם 7, חיפה</li>
+            <!-- removed -->
+            <li><strong>אירוע משמעותי:</strong> ב-2023 מוזגו 3 משרדים לישות אחת</li>
+            <li><strong>לקוחות:</strong> 553 ב-SUMMIT (~500 פעילים)</li>
+            <li><strong>עובדים:</strong> ~20</li>
+        </ul>
+    </div>
+
+    <div class="highlight-box">
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="big-number">400K&#x20AA;</div>
+                <div class="big-label">הכנסות / חודש</div>
+            </div>
+            <div class="stat-item">
+                <div class="big-number">300K&#x20AA;</div>
+                <div class="big-label">הוצאות / חודש</div>
+            </div>
+            <div class="stat-item">
+                <div class="big-number">100K&#x20AA;</div>
+                <div class="big-label">רווח נקי / חודש</div>
+            </div>
+            <div class="stat-item">
+                <div class="big-number">25%</div>
+                <div class="big-label">שיעור רווחיות</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="sub-header">מבנה ארגוני</h3>
+    <div class="info-card">
+        <ul>
+            <li><strong>תומר פרי</strong> (מנכ"ל/מייסד) - מנהל מחלקות חברות, שכר, כספים</li>
+            <li><strong>שחר</strong> (שותף רו"ח) - מנהל מחלקות עצמאים וביקורת</li>
+            <li><strong>לאה</strong> - עוזרת מנכ"ל, מורשית הגשות לרשויות</li>
+            <li><strong>אורנה</strong> - מזכירה + גבייה, חשבוניות דרך SUMMIT</li>
+        </ul>
+    </div>
+
+    <h3 class="sub-header">מחלקות</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>מחלקה</th>
+                <th>אחראי</th>
+                <th>צוות</th>
+                <th>לקוחות</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>עצמאים (תחת שחר)</td>
+                <td>עזרא חיו</td>
+                <td>חנה רוטנברג</td>
+                <td>413 (74.7%)</td>
+            </tr>
+            <tr>
+                <td>חברות (תחת תומר)</td>
+                <td>יעל אסף</td>
+                <td>יוכבד, צירי, שושי, ברכה, מאיר</td>
+                <td>~140</td>
+            </tr>
+            <tr>
+                <td>שכר (תחת תומר)</td>
+                <td>תומר פרי</td>
+                <td>רומן, אסיה</td>
+                <td>חברות + עצמאים עם שכר</td>
+            </tr>
+            <tr>
+                <td>ביקורת (תחת שחר)</td>
+                <td>שחר</td>
+                <td>שקד, סאידה, נידאא</td>
+                <td>דוחות שנתיים, ביקורת</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="sub-header">כלים קיימים</h3>
+    <div class="info-card">
+        <ul>
+            <li><strong>SUMMIT</strong> - מערכת מרכזית: ניהול לקוחות, חשבוניות, הגשות, סליקת כרטיסי אשראי (308 לקוחות על חיוב אוטומטי ביום 16 לחודש)</li>
+            <li><strong>WhatsApp</strong> - ערוץ תקשורת עיקרי עם לקוחות</li>
+        </ul>
+    </div>
+
+    <h3 class="sub-header">כאבים עיקריים</h3>
+    <ol class="pain-list">
+        <li><strong>איחורי הגשות</strong> &larr; 20,000&#x20AA;+ בקנסות ב-3 שנים</li>
+        <li><strong>עומס וואטסאפ</strong> &larr; 20+ הודעות ביום, תומר לא מספיק לענות</li>
+        <li><strong>גבייה ידנית</strong> &larr; ~245 לקוחות פעילים לא על הוראת קבע</li>
+        <li><strong>Monday.com לא מספיק טוב</strong> &larr; דברים נופלים בין הכיסאות</li>
+        <li><strong>נטישת לקוחות</strong> &larr; עשרות בשנה</li>
+    </ol>
+
+    <h3 class="sub-header">KPIs שהוגדרו ע"י המנכ"ל</h3>
+    <ul class="kpi-list">
+        <li>מענה מיידי ללקוחות ודיווחים בזמן</li>
+        <li>אפס "הפתעות מס" - בדיקת סבירות לאורך השנה</li>
+        <li>איסור על AI לעשות פעולה שתגרום נזק כספי/תדמיתי</li>
+        <li>הודעות אוטומטיות רק מתבניות מאושרות ב-100%</li>
+    </ul>
+
+    <h3 class="sub-header">גבולות AI</h3>
+    <div class="info-card">
+        <ul>
+            <li><strong>אוטונומיה:</strong> 8/10</li>
+            <li><strong>תקציב:</strong> ללא הגבלה</li>
+            <li><strong>יעד:</strong> תוצאות ראשונות תוך 3 חודשים</li>
+            <li><strong>שגיאות:</strong> טיפול כמו עובד אנושי - נרגיע ונתקן</li>
+        </ul>
+    </div>
+
+    <!-- SECTION: SOPs -->
+    <div class="page-break"></div>
+    <div class="section-header">נהלי עבודה קיימים (SOPs)</div>
+
+    <h3 class="sub-header">אדמיניסטרציה</h3>
+    <div class="info-card">
+        <ul>
+            <li><strong>פתיחת יום:</strong> 08:00 הגעה, פתיחת SUMMIT+CRM, קליטת חומרים, פתיחת קריאות שירות מוואטסאפ</li>
+            <li><strong>קליטת לקוח חדש:</strong> בדיקת מצ"ח, קבלת גיבויים, פתיחת סליקה ב-SUMMIT, הקמה ב-CRM</li>
+        </ul>
+    </div>
+
+    <h3 class="sub-header">הנהלת חשבונות</h3>
+    <div class="info-card">
+        <ul>
+            <li><strong>איסוף חומר (1-15 לחודש):</strong> יום 1 דרישה &rarr; יום 5 תזכורת &rarr; יום 10 טלפון &rarr; יום 15 סכומי מע"מ</li>
+            <li><strong>בדיקת סבירות (חובה):</strong> רצף הכנסות/הוצאות. קפיצה 10% = בירור מיידי</li>
+        </ul>
+    </div>
+
+    <h3 class="sub-header">ביקורת</h3>
+    <div class="info-card">
+        <ul>
+            <li><strong>סדר יום מבקר:</strong> עבודה בבלוקים, מענה מרוכז 11:30 + 15:00</li>
+            <li><strong>חוק ברזל:</strong> לא משאירים לקוח בלי מענה בסוף היום</li>
+            <li><strong>שידור דוחות:</strong> הפקת 1214, PDF מאוחד, חתימה דיגיטלית, שידור לשע"מ</li>
+        </ul>
+    </div>
+
+    <h3 class="sub-header">לוח זמנים חודשי</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>יום</th>
+                <th>פעילות</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1-5</td><td>שליחת תזכורות לחומרים</td></tr>
+            <tr><td>9</td><td>דדליין שכר</td></tr>
+            <tr><td>15-19</td><td>הגשות ותשלומים לרשויות (מע"מ, מס הכנסה, ביטוח לאומי)</td></tr>
+            <tr><td>16</td><td>סליקת כרטיסי אשראי ב-SUMMIT (308 לקוחות)</td></tr>
+            <tr><td>25</td><td>שליחת דוחות חודשיים</td></tr>
+            <tr><td>25-31</td><td>מאזנים ודוחות דו-חודשיים</td></tr>
+        </tbody>
+    </table>
+
+    <!-- PHASE 1 -->
+    <div class="page-break"></div>
+    <div class="phase-header">
+        <div class="phase-label">שלב 1 | מיידי (חודש 1-2)</div>
+        <div class="phase-title">"עצירת הדימום"</div>
+        <div class="phase-subtitle">טיפול בגבייה, דדליינים ותקשורת לקוחות</div>
+    </div>
+
+    <!-- Agent 1 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">1</span>
+            <span class="agent-name">סוכן גבייה ומעבר לסליקה</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן אוטומציה / תפעול</span>
+            <span class="agent-tag tag-cost">&#x20AA;0 / חודש</span>
+            <span class="agent-tag tag-target">יעד: 80% על סליקה תוך 60 יום</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>העברת 245 לקוחות שלא על סליקה אוטומטית ב-SUMMIT לכרטיס אשראי</p>
+        <p class="agent-section-label">תהליך</p>
+        <ol>
+            <li>שליפת רשימת לקוחות פעילים מ-SUMMIT שלא על סליקה</li>
+            <li>מיון לפי גודל חוב + ותק</li>
+            <li>שליחת הודעת WhatsApp מתבנית מאושרת: "שלום [שם], במסגרת שיפור השירות אנו מעבירים לתשלום אוטומטי. הקליקו כאן להזנת פרטי כרטיס: [לינק SUMMIT]"</li>
+            <li>תזכורת אחרי 3 ימים למי שלא הגיב</li>
+            <li>תזכורת שנייה אחרי שבוע</li>
+            <li>העברה לאורנה למי שלא הגיב ל-3 הודעות</li>
+        </ol>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>אחוז לקוחות על סליקה</li>
+            <li>ימי גבייה ממוצעים</li>
+            <li>אובדן הכנסות</li>
+        </ul>
+    </div>
+
+    <!-- Agent 2 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">2</span>
+            <span class="agent-name">סוכן תזכורות ולוח זמנים</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן תזמון / workflow</span>
+            <span class="agent-tag tag-cost">~&#x20AA;500 / חודש</span>
+            <span class="agent-tag tag-target">יעד: 100% עמידה בדדליינים, אפס קנסות</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>אוטומציה של לוח הזמנים החודשי - שום דדליין לא נפספס</p>
+        <p class="agent-section-label">תהליך</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>יום</th>
+                    <th>פעולה אוטומטית</th>
+                    <th>מעורבות אנושית</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>שליחת דרישת חומר לכל לקוח (WhatsApp מתבנית)</td><td>ללא</td></tr>
+                <tr><td>5</td><td>תזכורת למי שלא שלח</td><td>ללא</td></tr>
+                <tr><td>9</td><td>התראה אדומה - דדליין שכר, דשבורד מראה מי חסר</td><td>מנהל תיק</td></tr>
+                <tr><td>10</td><td>הכנת רשימת מאחרים לטלפון</td><td>מנהל תיק מתקשר</td></tr>
+                <tr><td>15-19</td><td>בדיקה שכל ההגשות בוצעו, התראה על חסרים</td><td>לאה</td></tr>
+                <tr><td>16</td><td>וידוא שהסליקה ב-SUMMIT עברה</td><td>אורנה</td></tr>
+                <tr><td>25</td><td>שליחת דוחות חודשיים ללקוחות</td><td>ללא</td></tr>
+            </tbody>
+        </table>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>מספר קנסות (יעד: 0)</li>
+            <li>אחוז הגשות בזמן</li>
+        </ul>
+    </div>
+
+    <!-- Agent 3 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">3</span>
+            <span class="agent-name">סוכן תקשורת לקוחות (WhatsApp)</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן תקשורת / שירות לקוחות</span>
+            <span class="agent-tag tag-cost">~&#x20AA;850 / חודש</span>
+            <span class="agent-tag tag-target">יעד: 70% מענה אוטומטי מיידי</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>מענה מיידי ל-100+ הודעות WhatsApp ביום</p>
+        <p class="agent-section-label">תהליך</p>
+        <p>קורא כל הודעה נכנסת ומסווג:</p>
+        <ul>
+            <li><strong>שאלה שגרתית</strong> (מתי הדוח? מה המע"מ? שעות פתיחה?) &rarr; תשובה מיידית מתבנית מאושרת</li>
+            <li><strong>בקשת מסמך</strong> (אישור ניכוי מס, חשבונית) &rarr; שליפה מ-SUMMIT ושליחה</li>
+            <li><strong>נושא מורכב</strong> (ייעוץ, ערעור, בעיה) &rarr; העברה למנהל תיק הרלוונטי עם סיכום</li>
+        </ul>
+        <p style="margin-top: 10px;"><strong>חוק ברזל:</strong> בדיקה ב-15:00 שאף לקוח לא נשאר בלי מענה</p>
+        <p><strong>הבטחה:</strong> כל התשובות רק מתבניות מאושרות מראש (100%)</p>
+        <p class="agent-section-label">עלות</p>
+        <p>WhatsApp Business API ~&#x20AA;350 + Claude API ~&#x20AA;500</p>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>זמן מענה ממוצע</li>
+            <li>אחוז מענה אוטומטי</li>
+            <li>שביעות רצון לקוחות</li>
+        </ul>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="page-break"></div>
+    <div class="phase-header">
+        <div class="phase-label">שלב 2 | חודש 3</div>
+        <div class="phase-title">"אפס הפתעות מס"</div>
+        <div class="phase-subtitle">בקרה, קליטה ו-CRM</div>
+    </div>
+
+    <!-- Agent 4 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">4</span>
+            <span class="agent-name">סוכן בדיקת סבירות</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן ניתוח / בקרה</span>
+            <span class="agent-tag tag-cost">~&#x20AA;500 / חודש</span>
+            <span class="agent-tag tag-target">יעד: אפס הפתעות מס בסוף שנה</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>מניעת הפתעות מס - KPI 2 של המנכ"ל</p>
+        <p class="agent-section-label">תהליך</p>
+        <ul>
+            <li>כל חודש, אחרי קליטת הנתונים ב-SUMMIT, הסוכן סורק את כל 553 הלקוחות</li>
+            <li>משווה מחזור הכנסות/הוצאות לחודש קודם ולתקופה מקבילה אשתקד</li>
+            <li>קפיצה של 10%+ &rarr; התראה מיידית למנהל תיק</li>
+            <li>בדיקת רצף הכנסות/הוצאות קבועות</li>
+            <li>סיכום חודשי: מי תקין, מי חריג, מי בסיכון</li>
+            <li>דוח רבעוני למנכ"ל עם מגמות</li>
+        </ul>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>מספר חריגות שזוהו מוקדם</li>
+            <li>מספר הפתעות מס (יעד: 0)</li>
+        </ul>
+    </div>
+
+    <!-- Agent 5 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">5</span>
+            <span class="agent-name">סוכן קליטת לקוח חדש</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן תהליך / onboarding</span>
+            <span class="agent-tag tag-cost">~&#x20AA;200 / חודש</span>
+            <span class="agent-tag tag-target">יעד: קליטה מלאה תוך שבוע</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>וידוא שאף לקוח חדש לא "נופל בין הכיסאות"</p>
+        <p class="agent-section-label">תהליך (מבוסס על הנוהל הקיים)</p>
+        <div class="process-step">בדיקת חובות ברשויות (מצ"ח) - סוכן בודק ומדווח</div>
+        <div class="process-step">קבלת גיבויים מהלקוח - סוכן שולח דרישה ועוקב</div>
+        <div class="process-step">פתיחת מנוי סליקה ב-SUMMIT - סוכן מתריע אם לא בוצע</div>
+        <div class="process-step">הקמה ב-CRM - סוכן יוצר כרטיס ומעדכן</div>
+        <div class="process-step">חתימה על הסכם שכר טרחה</div>
+        <div class="process-step">שיוך למנהל תיק</div>
+        <p style="margin-top: 10px;">כל שלב שלא הושלם תוך 48 שעות &rarr; תזכורת אוטומטית</p>
+        <p><strong>דשבורד:</strong> כמה לקוחות חדשים בתהליך קליטה, מה הסטטוס</p>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>זמן קליטה ממוצע</li>
+            <li>אחוז השלמת צ'קליסט</li>
+        </ul>
+    </div>
+
+    <!-- Agent 6 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">6</span>
+            <span class="agent-name">סוכן CRM</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן ניהול מידע</span>
+            <span class="agent-tag tag-cost">&#x20AA;0 / חודש</span>
+            <span class="agent-tag tag-target">יעד: תמונת מצב מלאה על כל לקוח בלחיצה</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>בניית ה-CRM שחסר - כרטיס לקוח מלא</p>
+        <p class="agent-section-label">תהליך</p>
+        <ul>
+            <li>מושך נתונים מ-SUMMIT: פרטי לקוח, סטטוס תיק, חיובים, הגשות</li>
+            <li>מרכז היסטוריית תקשורת מ-WhatsApp</li>
+            <li>מסמן: מסמכים חסרים, חובות, הגשות מאוחרות</li>
+            <li>כל מנהל תיק רואה דשבורד של הלקוחות שלו</li>
+        </ul>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>שלמות הנתונים</li>
+            <li>שימוש ע"י הצוות</li>
+        </ul>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="page-break"></div>
+    <div class="phase-header">
+        <div class="phase-label">שלב 3 | חודש 4-6</div>
+        <div class="phase-title">"שירות שגורם לוואו"</div>
+        <div class="phase-subtitle">אוטומציה מתקדמת, צמיחה ופורטל לקוחות</div>
+    </div>
+
+    <!-- Agent 7 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">7</span>
+            <span class="agent-name">סוכן שידור דוחות (ביקורת)</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן תהליך / רגולציה</span>
+            <span class="agent-tag tag-cost">~&#x20AA;500 / חודש</span>
+            <span class="agent-tag tag-target">יעד: מ-8-10 ימים &rarr; 2-3 ימים</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>אוטומציה של pipeline הדוחות</p>
+        <p class="agent-section-label">תהליך (מבוסס על נוהל ביקורת)</p>
+        <ul>
+            <li>הפקת טופס 1214 אוטומטית</li>
+            <li>יצירת PDF מאוחד</li>
+            <li>הכנה לחתימה דיגיטלית</li>
+            <li>רו"ח חותם &rarr; סוכן משדר לשע"מ</li>
+            <li>אישור ללקוח שהדוח הוגש</li>
+        </ul>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>זמן סגירת חודש</li>
+            <li>מספר דוחות ששודרו בזמן</li>
+        </ul>
+    </div>
+
+    <!-- Agent 8 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">8</span>
+            <span class="agent-name">סוכן צמיחה עסקית</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן אנליטיקה / עסקי</span>
+            <span class="agent-tag tag-cost">~&#x20AA;300 / חודש</span>
+            <span class="agent-tag tag-target">יעד: -50% נטישה, 10+ שדרוגים/חודש</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>זיהוי הזדמנויות וסיכונים</p>
+        <p class="agent-section-label">תהליך</p>
+        <p>ניתוח נתוני SUMMIT לזיהוי:</p>
+        <ul>
+            <li>לקוחות בסיכון נטישה (לא משלמים, לא עונים, לא מרוצים)</li>
+            <li>הזדמנויות שדרוג (עוסק פטור שעבר 120K &rarr; מורשה, עצמאי שגדל &rarr; חברה)</li>
+            <li>לקוחות עם חוב גדל</li>
+        </ul>
+        <p style="margin-top: 8px;">דוח חודשי למנכ"ל עם המלצות פעולה</p>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>שיעור נטישה</li>
+            <li>הכנסה מלקוחות ששודרגו</li>
+        </ul>
+    </div>
+
+    <!-- Agent 9 -->
+    <div class="agent-card">
+        <div class="agent-title">
+            <span class="agent-number">9</span>
+            <span class="agent-name">סוכן פורטל לקוחות</span>
+        </div>
+        <div class="agent-meta">
+            <span class="agent-tag tag-type">סוכן שירות / חוויית לקוח</span>
+            <span class="agent-tag tag-cost">~&#x20AA;500 / חודש + פיתוח</span>
+            <span class="agent-tag tag-target">יעד: שביעות רצון > 4.5/5</span>
+        </div>
+        <p class="agent-section-label">מטרה</p>
+        <p>"הלקוח אומר וואו" - שירות שאף משרד בישראל לא מציע</p>
+        <p class="agent-section-label">תהליך</p>
+        <ul>
+            <li>פורטל אישי לכל לקוח (גישה דרך לינק/אפליקציה)</li>
+            <li>הלקוח רואה: סטטוס דוחות, מסמכים חסרים, יתרת חוב, חשבוניות, היסטוריה</li>
+            <li>צ'אט ישיר עם הסוכן האישי</li>
+            <li>התראות push על דדליינים</li>
+        </ul>
+        <p class="agent-section-label">מדדי הצלחה</p>
+        <ul>
+            <li>אימוץ ע"י לקוחות</li>
+            <li>שביעות רצון</li>
+            <li>תלונות</li>
+        </ul>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="page-break"></div>
+    <div class="section-header">סיכום סוכנים</div>
+
+    <div class="summary-table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>שם הסוכן</th>
+                    <th>סוג</th>
+                    <th>שלב</th>
+                    <th>עלות חודשית</th>
+                    <th>KPI עיקרי</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>סוכן גבייה ומעבר לסליקה</td>
+                    <td>תפעול</td>
+                    <td>מיידי</td>
+                    <td>&#x20AA;0</td>
+                    <td>80% על סליקה</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>סוכן תזכורות ולוח זמנים</td>
+                    <td>workflow</td>
+                    <td>מיידי</td>
+                    <td>&#x20AA;500</td>
+                    <td>0 קנסות</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>סוכן תקשורת לקוחות</td>
+                    <td>שירות</td>
+                    <td>מיידי</td>
+                    <td>&#x20AA;850</td>
+                    <td>מענה &lt; 5 דק'</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>סוכן בדיקת סבירות</td>
+                    <td>בקרה</td>
+                    <td>חודש 3</td>
+                    <td>&#x20AA;500</td>
+                    <td>0 הפתעות מס</td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>סוכן קליטת לקוח חדש</td>
+                    <td>onboarding</td>
+                    <td>חודש 3</td>
+                    <td>&#x20AA;200</td>
+                    <td>קליטה &lt; שבוע</td>
+                </tr>
+                <tr>
+                    <td><strong>6</strong></td>
+                    <td>סוכן CRM</td>
+                    <td>ניהול מידע</td>
+                    <td>חודש 3</td>
+                    <td>&#x20AA;0</td>
+                    <td>תמונת לקוח מלאה</td>
+                </tr>
+                <tr>
+                    <td><strong>7</strong></td>
+                    <td>סוכן שידור דוחות</td>
+                    <td>רגולציה</td>
+                    <td>חודש 4-6</td>
+                    <td>&#x20AA;500</td>
+                    <td>סגירה ב-2-3 ימים</td>
+                </tr>
+                <tr>
+                    <td><strong>8</strong></td>
+                    <td>סוכן צמיחה עסקית</td>
+                    <td>אנליטיקה</td>
+                    <td>חודש 4-6</td>
+                    <td>&#x20AA;300</td>
+                    <td>-50% נטישה</td>
+                </tr>
+                <tr>
+                    <td><strong>9</strong></td>
+                    <td>סוכן פורטל לקוחות</td>
+                    <td>חוויית לקוח</td>
+                    <td>חודש 4-6</td>
+                    <td>&#x20AA;500</td>
+                    <td>"וואו" &gt; 4.5/5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="highlight-box">
+        <div class="big-number">~&#x20AA;3,350</div>
+        <div class="big-label">סה"כ עלות חודשית לכלל הסוכנים</div>
+    </div>
+
+    <!-- KPIs Before/After -->
+    <div class="section-header">יעדים מדידים - לפני ואחרי</div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>KPI</th>
+                <th>מצב נוכחי</th>
+                <th>יעד חודש 6</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>זמן מענה ללקוח</td>
+                <td>שעות עד ימים</td>
+                <td>&lt; 5 דקות</td>
+            </tr>
+            <tr>
+                <td>קנסות איחור שנתיים</td>
+                <td>~17,000&#x20AA;</td>
+                <td>&#x20AA;0</td>
+            </tr>
+            <tr>
+                <td>לקוחות על סליקה</td>
+                <td>308 (~56%)</td>
+                <td>450+ (~82%)</td>
+            </tr>
+            <tr>
+                <td>זמן סגירת חודש</td>
+                <td>8-10 ימים</td>
+                <td>2-3 ימים</td>
+            </tr>
+            <tr>
+                <td>נטישת לקוחות</td>
+                <td>עשרות / שנה</td>
+                <td>&lt; 10 / שנה</td>
+            </tr>
+            <tr>
+                <td>רווח נקי</td>
+                <td>12.5%</td>
+                <td>20%+</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Budget -->
+    <div class="section-header">תקציב שנתי כולל</div>
+
+    <div class="roi-box">
+        <div class="roi-item">
+            <div class="roi-value">~&#x20AA;40K</div>
+            <div class="roi-label">עלות שנתית שוטפת<br>(&#x20AA;3,350 x 12)</div>
+        </div>
+        <div class="roi-item">
+            <div class="roi-value">~&#x20AA;200K+</div>
+            <div class="roi-label">חיסכון צפוי שנתי<br>(קנסות, זמן, נטישה, גבייה)</div>
+        </div>
+        <div class="roi-item highlight">
+            <div class="roi-value">400-500%</div>
+            <div class="roi-label">ROI צפוי</div>
+        </div>
+    </div>
+
+    <!-- Principles -->
+    <div class="page-break"></div>
+    <div class="section-header">עקרונות מנחים</div>
+
+    <div class="principle-card">
+        <span class="principle-num">1</span>
+        <div class="principle-text"><strong>SUMMIT היא הבסיס</strong> - לא מחליפים, מחברים. כל הסוכנים עובדים מעל התשתית הקיימת.</div>
+    </div>
+    <div class="principle-card">
+        <span class="principle-num">2</span>
+        <div class="principle-text"><strong>תבניות מאושרות בלבד</strong> - שום הודעה לא יוצאת ללקוח בלי אישור מראש של התבנית.</div>
+    </div>
+    <div class="principle-card">
+        <span class="principle-num">3</span>
+        <div class="principle-text"><strong>פיקוח אנושי תמיד</strong> - AI מכין, רו"ח מאשר. אין החלטות אוטונומיות בנושאים מהותיים.</div>
+    </div>
+    <div class="principle-card">
+        <span class="principle-num">4</span>
+        <div class="principle-text"><strong>אפס סיכון</strong> - איסור מוחלט על פעולה שתגרום נזק כספי או תדמיתי.</div>
+    </div>
+
+    <!-- Signature -->
+    <div class="signature-block">
+        <div class="signature-name">נועה לוי-אלגוריתם</div>
+        <div class="signature-role">מנכ"לית, החברה הוירטואלית</div>
+        <div class="signature-role">פירסט חשבונאות ופיננסים</div>
+        <div class="signature-role" style="margin-top: 10px; color: #b0bec5;">אפריל 2026</div>
+    </div>
+
+    <div class="page-footer">
+        פירסט חשבונאות ופיננסים בע"מ | שד' פלי"ם 7, חיפה | חסוי - לשימוש פנימי בלבד
+    </div>
+
+</div>
+
+</body>
+</html>
