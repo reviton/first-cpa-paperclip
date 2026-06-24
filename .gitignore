@@ -1,7 +1,10 @@
 node_modules/
 backend/dist/
+frontend/build/
 .next/
 .vercel/
 .env.local
 *.log
 .DS_Store
+
+# Keep frontend/.env (contains only Supabase publishable keys, safe to commit)
