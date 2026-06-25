@@ -27,7 +27,22 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-right">
         <h1 className="header-title">{title}</h1>
-        <span className="header-subtitle">פירסט חשבונאות ופיננסים</span>
+        <span className="header-subtitle">
+          פירסט חשבונאות ופיננסים
+          <span
+            style={{
+              marginInlineStart: 8,
+              padding: '2px 8px',
+              borderRadius: 10,
+              background: '#dcfce7',
+              color: '#166534',
+              fontSize: 11,
+              fontWeight: 600,
+            }}
+          >
+            🟢 מחובר לגיט
+          </span>
+        </span>
       </div>
       <div className="header-left">
         <span className="header-date">{today}</span>
