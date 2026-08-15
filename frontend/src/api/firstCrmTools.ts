@@ -505,6 +505,42 @@ const handlers: Record<string, ToolHandler> = {
       documents: allDocs.filter(d => d.clientName === client.name),
     };
   },
+
+  send_email: async ({ to, subject, body, clientId }: { to: string; subject: string; body: string; clientId?: string }) => {
+    // Basic validation
+    if (!to || !subject || !body) return { error: 'to, subject, and body are all required' };
+    if (!to.includes('@')) return { error: `invalid email address: ${to}` };
+
+    // Client-side rate limit: max 5 sends per minute
+    const rlKey = 'email_send_history';
+    const now = Date.now();
+    const history: number[] = JSON.parse(localStorage.getItem(rlKey) || '[]');
+    const recent = history.filter(t => now - t < 60_000);
+    if (recent.length >= 5) {
+      return { error: 'rate limit: 5 emails per minute already sent. Wait 60 seconds and try again.' };
+    }
+
+    const webhookUrl = process.env.REACT_APP_MAKE_EMAIL_WEBHOOK;
+    if (!webhookUrl) {
+      return { error: 'REACT_APP_MAKE_EMAIL_WEBHOOK env var not set — configure in Vercel dashboard.' };
+    }
+
+    try {
+      const resp = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to, subject, body, clientId, sentAt: new Date().toISOString() }),
+      });
+      if (!resp.ok) return { error: `webhook returned ${resp.status}` };
+
+      // Update rate limit history
+      localStorage.setItem(rlKey, JSON.stringify([...recent, now]));
+
+      return { ok: true, to, subject, sentAt: new Date().toISOString() };
+    } catch (err: any) {
+      return { error: err.message ?? String(err) };
+    }
+  },
 };
 
 // ============================================================================
@@ -703,6 +739,21 @@ export const toolDefs: ToolDef[] = [
   { name: 'high_value_at_risk', description: 'High-retainer clients (>=4000/month) with debt or elevated risk. Highest business-impact list.', input_schema: { type: 'object', properties: {} } },
   { name: 'automation_rules_summary', description: 'Summary of automation rules: active, errors, total runs.', input_schema: { type: 'object', properties: {} } },
   { name: 'pipeline_status', description: 'Pipeline items count by stage + urgent count.', input_schema: { type: 'object', properties: {} } },
+
+  {
+    name: 'send_email',
+    description: '🚨 CRITICAL: Sends a REAL email to a REAL person via Gmail. You MUST ask the user for explicit approval in Hebrew BEFORE calling this tool. Show them the exact `to`, `subject`, and `body` first, then wait for a clear "כן" or "שלח" response. Never call this tool as your first action to a request — always propose the draft first, get approval, THEN send. Rate limit: 5 emails/minute.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        to: { type: 'string', description: 'Recipient email address (must contain @)' },
+        subject: { type: 'string', description: 'Email subject in Hebrew' },
+        body: { type: 'string', description: 'Full email body in Hebrew, ready to send as-is' },
+        clientId: { type: 'string', description: 'Optional: link to a client ID for logging/audit trail' },
+      },
+      required: ['to', 'subject', 'body'],
+    },
+  },
 ];
 
 // ============================================================================
@@ -716,6 +767,7 @@ const WRITE_TOOLS = new Set([
   'create_task',
   'update_task',
   'create_client_note',
+  'send_email',
 ]);
 
 export async function executeTool(name: string, input: any): Promise<any> {
