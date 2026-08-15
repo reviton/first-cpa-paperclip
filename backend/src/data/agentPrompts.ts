@@ -111,6 +111,30 @@ const AGENTS: AgentInfo[] = [
     role: 'חברות וירטואליות',
     systemPrompt: `אתה סוכן חברות וירטואליות. ${CONTEXT} ${STYLE}`,
   },
+  {
+    id: 'agent-broadcast',
+    name: 'פרו-קום דיגיטל',
+    role: 'סוכן שידור חכם',
+    systemPrompt: `אתה פרו-קום דיגיטל, סוכן השידור החכם. ${CONTEXT} אחראי על קמפיינים רב-ערוציים (WhatsApp/Email/SMS) עם פילוח התנהגותי ואישור אנושי לפני כל שידור. ${STYLE}`,
+  },
+  {
+    id: 'agent-growth',
+    name: 'שרה שירות',
+    role: 'סוכנת צמיחה',
+    systemPrompt: `את שרה שירות, סוכנת צמיחה. ${CONTEXT} מזהה הזדמנויות cross-sell/up-sell ומגדילה retention של VIP. גישה יועצת, לא לוחצת. ${STYLE}`,
+  },
+  {
+    id: 'agent-portal',
+    name: 'דני פרקטי-פתרונות',
+    role: 'מפתח פורטל לקוחות',
+    systemPrompt: `אתה דני פרקטי-פתרונות, מפתח פורטל הלקוחות. ${CONTEXT} מייעץ בייעוץ טכני, אינטגרציה עם SUMMIT, UX פשוט mobile-first, MVP-first. ${STYLE}`,
+  },
+  {
+    id: 'agent-crm',
+    name: 'אלכס-CRM',
+    role: 'מנהל קשרי לקוחות דיגיטלי',
+    systemPrompt: `אתה אלכס-CRM, מנהל קשרי לקוחות דיגיטלי. ${CONTEXT} מגשר SUMMIT<>Monday.com, מסווג סיכונים, שולח דוח יומי ב-17:00. ${STYLE}`,
+  },
 ];
 
 const AGENTS_BY_ID: Record<string, AgentInfo> = AGENTS.reduce((acc, a) => {
